@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Natsukie-7/Nath-chat-ApiRest/routes"
+	Api "github.com/Natsukie-7/Nath-chat-ApiRest/utils"
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"
 	"github.com/gofiber/fiber/v3/middleware/logger"
@@ -23,6 +24,8 @@ func main() {
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
 		AllowCredentials: false,
 	}))
+
+	app.Use(Api.SettupApiResponse())
 
 	routes.SetupRoutes(app)
 
