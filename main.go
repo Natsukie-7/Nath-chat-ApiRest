@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Natsukie-7/Nath-chat-ApiRest/routes"
+	Api "github.com/Natsukie-7/Nath-chat-ApiRest/utils"
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"
 	"github.com/gofiber/fiber/v3/middleware/logger"
@@ -24,7 +25,11 @@ func main() {
 		AllowCredentials: false,
 	}))
 
+	app.Use(Api.SettupApiResponse())
+
 	routes.SetupRoutes(app)
 
-	app.Listen(":3000")
+	app.Listen(":3000", fiber.ListenConfig{
+		DisableStartupMessage: true,
+	})
 }
