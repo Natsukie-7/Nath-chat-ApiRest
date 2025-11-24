@@ -1,0 +1,14 @@
+# Binários e builds
+/bin/
+/dist/
+/*.exe
+/*.exe~
+
+# Arquivos de ambiente
+.env
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
