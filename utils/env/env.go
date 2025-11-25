@@ -1,4 +1,3 @@
-// utils/env/config.go
 package Env
 
 import (
@@ -8,15 +7,16 @@ import (
 func init() {
 	loader := EnvLoader.Load()
 
-	Port = loader.Int("PORT", 3000)
-	BcryptKeyword = loader.String("BCRYPT_KEYWORD")
-	Debug = loader.Bool("DEBUG", false)
-	Teste = loader.String("Teste")
+	HOST = loader.String("API_HOST")
+	PORT = loader.Int("API_PORT", 3000)
+	DEBUG = loader.Bool("DEBUG", false)
+
+	BCRYPT_KEYWORD = loader.String("BCRYPT_KEYWORD")
 }
 
 var (
-	Port          int
-	BcryptKeyword string
-	Debug         bool
-	Teste         string
+	HOST           string
+	PORT           int
+	BCRYPT_KEYWORD string
+	DEBUG          bool
 )

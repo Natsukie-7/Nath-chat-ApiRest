@@ -8,7 +8,7 @@ import (
 )
 
 func GetUser(ctx fiber.Ctx) error {
-	pass, _ := bycrypt.HashPassword(Env.BcryptKeyword)
+	pass, _ := bycrypt.HashPassword(Env.BCRYPT_KEYWORD)
 
 	return Api.Resp{
 		Status:  201,
