@@ -1,8 +1,12 @@
 package main
 
 import (
+	"fmt"
+	"log"
+
 	"github.com/Natsukie-7/Nath-chat-ApiRest/routes"
-	Api "github.com/Natsukie-7/Nath-chat-ApiRest/utils"
+	Api "github.com/Natsukie-7/Nath-chat-ApiRest/utils/api"
+	Env "github.com/Natsukie-7/Nath-chat-ApiRest/utils/env"
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"
 	"github.com/gofiber/fiber/v3/middleware/logger"
@@ -29,7 +33,18 @@ func main() {
 
 	routes.SetupRoutes(app)
 
-	app.Listen(":3000", fiber.ListenConfig{
+	welcomeBanner := fmt.Sprintf(`
+	╭──────────────────────────────────────────╮
+	│     Nath-chat API Inicializado!          │
+	╰──────────────────────────────────────────╯
+	Network: %s:%d
+	`, Env.HOST, Env.PORT)
+	fmt.Println(welcomeBanner)
+
+	serverStartError := app.Listen(":3000", fiber.ListenConfig{
 		DisableStartupMessage: true,
 	})
+	if serverStartError != nil {
+		log.Fatalf("Erro ao iniciar servidor: %v", serverStartError)
+	}
 }
